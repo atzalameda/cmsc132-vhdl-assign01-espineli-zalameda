@@ -6,17 +6,17 @@
 library IEEE; use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity tb_buzzers is
-	constant DELAY: time := 10 ns;
+entity tb_buzzers is  --creation of entity
+	constant DELAY: time := 10 ns; --allows a time delay of 10 nanoseconds
 end entity;
 
-architecture tb_arch of tb_buzzers is
+architecture tb_arch of tb_buzzers is --creation of architecture for test bench
 
 	component buzzers is
-			port(alarm: out std_logic; INBoggis, OUTBoggis, INBunce, OUTBunce, INBean, OUTBean: in std_logic);
+			port(alarm: out std_logic; INBoggis, OUTBoggis, INBunce, OUTBunce, INBean, OUTBean: in std_logic);--same ports are used
 	end component;
 	
-	signal alarm: std_logic;
+	signal alarm: std_logic; 
 	signal INBoggis, OUTBoggis, INBunce, OUTBunce, INBean, OUTBean: std_logic;
 	
 begin --architecture
@@ -32,7 +32,7 @@ begin --architecture
 	
 		report "start simulation";
 		
-		for i in 0 to 63 loop
+		for i in 0 to 63 loop --shows that their are 64 states considered
 			temp := TO_UNSIGNED(i, 6);
 			--assign each input a value from temp
 			INBoggis <= temp(5);
@@ -42,26 +42,27 @@ begin --architecture
 			OUTBunce <= temp(1);
 			OUTBean <= temp(0);
 			
-			if(i <= 8 or i = 16 or i = 24 or i = 32 or i = 40 or i = 48 or i = 56) then 
+			if(i <= 8 or i = 16 or i = 24 or i = 32 or i = 40 or i = 48 or i = 56) then -- values in the table in which the alarm if off
 				expected_valid := '0';
-			else expected_valid := '1';
+			else expected_valid := '1'; -- values in the table in which the alarm is on
 			end if;
 			wait for DELAY;
 			
-			assert((expected_valid = alarm))
-				report "ERROR: Expected Alarm " & std_logic'image(expected_valid) & " /= actual alarm " & std_logic'image(alarm);
+			assert((expected_valid = alarm)) --assign expected_valid as the alarm
+				report "ERROR: Expected Alarm " & std_logic'image(expected_valid) & " /= actual alarm " & std_logic'image(alarm); 
+                --sends error report if expected alaram not equal to actual alarm
 				
-			if (expected_valid /= alarm)
+			if (expected_valid /= alarm) --if expected_valid /= alarm, error_count increments
 				then error_count := error_count + 1;
 			end if;
 		end loop;
 		
 		wait for DELAY;
-		assert (error_count = 0)
+		assert (error_count = 0) --sends number of errors
 			report "ERROR: There were " &
 				integer'image(error_count) & " errors!";
 			if(error_count = 0)
-				then report "Simulation completed with NO errors.";
+				then report "Simulation completed with NO errors."; --if their are no errors reported
 			end if;
 		wait;
 		
