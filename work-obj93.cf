@@ -1,0 +1,7 @@
+v 3
+file . "t4l-espineli-zalameda-tb.vhdl" "20160324071212.000" "20160324151220.645":
+  entity tb_buzzers at 6( 82) + 0 on 17;
+  architecture tb_arch of tb_buzzers at 13( 218) + 0 on 18;
+file . "t4l-espineli-zalameda.vhdl" "20160324070216.000" "20160324151218.641":
+  entity buzzers at 6( 82) + 0 on 15;
+  architecture behav of buzzers at 13( 257) + 0 on 16;
