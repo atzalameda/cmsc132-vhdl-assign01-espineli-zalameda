@@ -56,5 +56,14 @@ begin --architecture
 			end if;
 		end loop;
 		
+		wait for DELAY;
+		assert (error_count = 0)
+			report "ERROR: There were " &
+				integer'image(error_count) & " errors!";
+			if(error_count = 0)
+				then report "Simulation completed with NO errors.";
+			end if;
+		wait;
+		
 	end process;
 end architecture tb_arch;
