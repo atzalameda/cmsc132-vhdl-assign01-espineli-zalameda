@@ -12,5 +12,5 @@ end entity;
 
 architecture behav of buzzers is
 	begin
-		alarm <= (INBean and OUTBean) or (OUTBunce and INBean) or (INBunce and OUTBean) or (INBunce and OUTBunce) or (OUTBoggis and INBean) or (OUTBoggis and INBunce) or (INBoggis and OUTBean) or (INBoggis and OUTBunce) or (INBoggis and OUTBoggis);
+		alarm <= (INBean and OUTBean) or (INBean and OUTBunce) or (INBean and OUTBoggis) or (INBunce and OUTBean) or (INBunce and OUTBunce) or (INBunce and OUTBoggis) or (INBoggis and OUTBean) or (INBoggis and OUTBunce) or (INBoggis and OUTBoggis);
 end architecture behav;
